@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 		locale: "en_US",
 		title: "Item Shop",
 		description: "Fortnite item shop, resets everyday at 00:00 UTC.",
-		url: "fn.nanos.club",
+		url: "fn.nanos.club"
 	}
 };
 
