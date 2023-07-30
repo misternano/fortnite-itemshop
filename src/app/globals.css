@@ -1,27 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
+@import url("https://db.onlinewebfonts.com/c/800e985f75a5a56c2f7b4be502d286de?family=Burbank+Big+Condensed");
+@import url("./rarity.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+* {
+    font-family: "Jost", sans-serif;
+    color: #fff;
+    user-select: none;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    background-color: #202225;
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 9999px;
+    border: 0.25rem solid transparent;
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(66 66 66 / 0.815);
+    border-radius: 9999px;
+    border: 0.25rem solid transparent;
+    background-clip: padding-box;
+}
+
+.gap-bullet {
+    @apply gap-1;
+}
+
+.gap-bullet::after {
+    content: "";
+    margin-left: 0.25rem;
+    height: 5px;
+    width: 5px;
+    background: white;
+    border-radius: 100%;
+}
+
+@font-face {
+    font-family: "Burbank";
+    src: url("https://db.onlinewebfonts.com/t/800e985f75a5a56c2f7b4be502d286de.eot");
+    src: url("https://db.onlinewebfonts.com/t/800e985f75a5a56c2f7b4be502d286de.eot?#iefix") format("embedded-opentype"), url("https://db.onlinewebfonts.com/t/800e985f75a5a56c2f7b4be502d286de.woff2") format("woff2"), url("https://db.onlinewebfonts.com/t/800e985f75a5a56c2f7b4be502d286de.woff") format("woff"), url("https://db.onlinewebfonts.com/t/800e985f75a5a56c2f7b4be502d286de.ttf") format("truetype"), url("https://db.onlinewebfonts.com/t/800e985f75a5a56c2f7b4be502d286de.svg#Burbank Big Condensed") format("svg");
 }

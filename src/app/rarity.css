@@ -1,0 +1,142 @@
+/****************/
+/*  BACKGROUND  */
+/****************/
+
+.bg-common {
+    background: radial-gradient(#bebebe, #646464);
+    border: 2px solid #b1b1b1;
+}
+
+.bg-uncommon {
+    background: radial-gradient(#6abb1e, #175117);
+    border: 2px solid #88e339;
+}
+
+.bg-rare {
+    background: radial-gradient(#2cc0ff, #143877);
+    border: 2px solid #37d0ff;
+}
+
+.bg-epic {
+    background: radial-gradient(#c359ff, #4c2483);
+    border: 2px solid #ff42e7;
+}
+
+.bg-legendary {
+    background: radial-gradient(#ea8d23, #78371d);
+    border: 2px solid #e98d4b;
+}
+
+.bg-dark {
+    background: radial-gradient(#fb22df, #520c6f);
+    border: 2px solid #ff42e7;
+}
+
+.bg-slurp {
+    background: radial-gradient(#29f1a3, #12a9a4);
+    border: 2px solid #53f0ff;
+}
+
+.bg-shadow {
+    background: radial-gradient(#717171, #191919);
+    border: 2px solid #949494;
+}
+
+.bg-frozen {
+    background: radial-gradient(#94dfff, #269ed6);
+    border: 2px solid #c4dff7;
+}
+
+.bg-lava {
+    background: radial-gradient(#ea8d23, #6a0a31);
+    border: 2px solid #d19635;
+}
+
+.bg-icon {
+    background: radial-gradient(#36b7b7, #256b6b);
+    border: 2px solid #52e0e0;
+}
+
+.bg-marvel {
+    background: radial-gradient(#c53333, #761b1b);
+    border: 2px solid #ef3537;
+}
+
+.bg-dc {
+    background: radial-gradient(#5475c7, #243461);
+    border: 2px solid #6094ce;
+}
+
+.bg-starwars {
+    background: radial-gradient(#1b366e, #081737);
+    border: 2px solid #e7c413;
+}
+
+.bg-gaming {
+    background: radial-gradient(#5447d4, #312497);
+    border: 2px solid #8078ff;
+}
+
+/****************/
+/*     TEXT     */
+/****************/
+
+.text-common {
+    color: #b1b1b1;
+}
+
+.text-uncommon {
+    color: #88e339
+}
+
+.text-rare {
+    color: #37d0ff
+}
+
+.text-epic {
+    color: #ff42e7
+}
+
+.text-legendary {
+    color: #e98d4b
+}
+
+.text-frozen {
+    color: #c4dff7
+}
+
+.text-lava {
+    color: #d19635
+}
+
+.text-dark {
+    color: #ff42e7
+}
+
+.text-marvel {
+    color: #ef3537
+}
+
+.text-dc {
+    color: #6094ce
+}
+
+.text-slurp {
+    color: #53f0ff
+}
+
+.text-shadow {
+    color: #949494
+}
+
+.text-starwars {
+    color: #e7c413
+}
+
+.text-gaming {
+    color: #8078ff
+}
+
+.text-icon {
+    color: #52e0e0
+}
