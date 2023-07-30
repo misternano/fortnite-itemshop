@@ -9,15 +9,14 @@ export const metadata: Metadata = {
 	themeColor: "#202225",
 	colorScheme: "dark",
 	title: `Item Shop - ${DateTime.utc().toFormat("MMMM dd")}`,
-	icons: ["https://fn.nanos.club/fort.png"],
-	description: "",
+	icons: ["assets/fort.png"],
+	description: "Fortnite item shop, resets everyday at 00:00 UTC.",
 	openGraph: {
 		type: "website",
 		locale: "en_US",
 		title: "Item Shop",
 		description: "Fortnite item shop, resets everyday at 00:00 UTC.",
 		url: "fn.nanos.club",
-		images: "assets/fort.png"
 	}
 };
 
