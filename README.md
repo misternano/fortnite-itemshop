@@ -1,34 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Fortnite Item Shop
 
-## Getting Started
+Welcome to the fortnite item shop Web Viewer project! This project aims to provide a convenient way for Fortnite players to browse and explore all the items available in the fortnite item shop. Additionally, it includes a countdown timer to keep track of when the shop refreshes.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- **Item Catalog**: Browse through a comprehensive catalog of all the items currently available in the fortnite item shop. Get detailed information about each item, including its name, rarity, price, and any special features.
+- **Countdown Timer**: Keep track of when the fortnite item shop refreshes with a built-in countdown timer. Never miss out on new items!
+- **Responsive Design**: Enjoy a seamless browsing experience across different devices and screen sizes, as the web viewer is designed to be responsive and user-friendly.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Contributions are welcome! If you have any suggestions, bug fixes, or new features to add, please follow these steps:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Fork the repository.
+2. Create a new branch for your feature: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m 'Add your feature'`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Open a pull request and describe your changes.
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
+This project is licensed under the [BSD 3-Clause License](https://opensource.org/license/bsd-3-clause/).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Acknowledgements
+fortnite item shop API used in this project is provided by [fnbr.co](https://fnbr.co/).
