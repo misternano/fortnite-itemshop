@@ -2,7 +2,6 @@ import "./globals.css";
 import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Navigation, Footer } from "@components";
-import { DateTime } from "luxon";
 
 export const metadata: Metadata = {
 	viewport: "width=device-width, initial-scale=1",
