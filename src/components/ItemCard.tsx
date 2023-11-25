@@ -91,12 +91,12 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 					src={data.images.icon ?? placeholder} alt={`${data.name} ${data.readableType}`} width={256} height={256} priority
 				/>
 				<div className="w-[calc(100%-8px)] absolute bottom-1 left-0 translate-x-[4px] bg-neutral-800/50 rounded-b-lg">
-					<h3 className="mt-1 px-2 text-2xl text-center truncate leading-tight font-burbank">
+					<h3 className="mt-1 px-2 text-2xl text-center truncate leading-tight font-burbank tracking-wider">
 						{data.name}
 					</h3>
 					<p className="mb-1 flex flex-row gap-1 items-center justify-center">
 						<Image className="w-5 h-5" src={vbucks} alt="vBucks" />
-						<span className="text-xl font-burbank">
+						<span className="text-xl font-burbank tracking-wider">
 							{data.price}
 						</span>
 					</p>
@@ -107,9 +107,9 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 					<div ref={modalRef} className="md:min-w-[700px] sm:min-w-[400px] w-[95%] md:w-fit mx-auto p-6 bg-neutral-800 border-2 border-[#202225] rounded translate-y-10 md:translate-y-40">
 						<button
 							onClick={toggleModal}
-							className="absolute top-2 right-2 p-2 bg-neutral-700/50 hover:bg-neutral-700/75 rounded-full transition-colors"
+							className="group absolute top-2 right-2 p-2 bg-neutral-700/50 hover:bg-neutral-700/75 rounded-full transition-colors"
 						>
-							<X className="w-5 h-5" />
+							<X size="16" className="group-hover:stroke-red-400" />
 						</button>
 						<div className="flex flex-col md:flex-row items-center md:items-start gap-6">
 							<div className="flex flex-col w-64 h-64 aspect-square">
@@ -141,7 +141,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 											{data.readableType}
 										</p>
 									</div>
-									<p>{"\"" + data.description + "\""}</p>
+									{data.description && <p>{"\"" + data.description + "\""}</p>}
 								</div>
 								{data.history ?
 									<div>

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 	viewport: "width=device-width, initial-scale=1",
 	themeColor: "#202225",
 	colorScheme: "dark",
-	title: `Item Shop - ${DateTime.utc().toFormat("MMMM dd")}`,
+	title: "Fortnite Item Shop",
 	icons: ["assets/fort.png"],
 	description: "Fortnite item shop, resets everyday at 00:00 UTC.",
 	openGraph: {
