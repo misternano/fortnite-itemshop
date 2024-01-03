@@ -77,6 +77,11 @@
     border: 2px solid #8078ff;
 }
 
+.bg-lamborghini {
+    background: radial-gradient(#752FC1,#340562);
+    border: 2px solid #cab2dc;
+}
+
 /****************/
 /*     TEXT     */
 /****************/
@@ -139,4 +144,8 @@
 
 .text-icon {
     color: #52e0e0
+}
+
+.text-lamborghini {
+    color: #cab2dc;
 }

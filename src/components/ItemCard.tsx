@@ -27,7 +27,8 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 		shadow: "bg-shadow",
 		star_wars: "bg-starwars",
 		gaming_legends: "bg-gaming",
-		icon_series: "bg-icon"
+		icon_series: "bg-icon",
+		lamborghini: "bg-lamborghini"
 	};
 
 	const rarityText: { [key: string]: string } = {
@@ -45,7 +46,8 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 		shadow: "text-shadow",
 		star_wars: "text-starwars",
 		gaming_legends: "text-gaming",
-		icon_series: "text-icon"
+		icon_series: "text-icon",
+		lamborghini: "text-lamborghini"
 	};
 
 	const readableRarity: { [key: string]: string } = {
