@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 "use client";
 import Image from "next/image";
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import type { Item } from "@types";
 import { useClickOutside } from "@hooks";
 import { X } from "lucide-react";
@@ -11,6 +11,9 @@ import placeholder from "../assets/images/placeholder.jpg";
 
 const ItemCard: FC<{ data: Item }> = ({ data }) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+	const [progress, setProgress] = useState<number>(0);
+	const intervalDuration = 7500;
 
 	const rarityBackground: { [key: string]: string } = {
 		common: "bg-common",
@@ -28,7 +31,8 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 		star_wars: "bg-starwars",
 		gaming_legends: "bg-gaming",
 		icon_series: "bg-icon",
-		lamborghini: "bg-lamborghini"
+		lamborghini: "bg-lamborghini",
+		mclaren: "bg-mclaren"
 	};
 
 	const rarityText: { [key: string]: string } = {
@@ -47,7 +51,8 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 		star_wars: "text-starwars",
 		gaming_legends: "text-gaming",
 		icon_series: "text-icon",
-		lamborghini: "text-lamborghini"
+		lamborghini: "text-lamborghini",
+		mclaren: "text-mclaren"
 	};
 
 	const readableRarity: { [key: string]: string } = {
@@ -65,7 +70,9 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 		shadow: "Shadow",
 		star_wars: "Star Wars",
 		gaming_legends: "Gaming Legends",
-		icon_series: "Icon Series"
+		icon_series: "Icon Series",
+		lamborghini: "Lamborghini",
+		mclaren: "McLaren"
 	};
 
 	const alternatingColors: string[] = ["#262626", "#222222"];
@@ -78,9 +85,37 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 		setIsOpen(false);
 	});
 
+	const images = [
+		`https://image.fnbr.co/outfit/${data.id}/icon.png`,
+		`https://image.fnbr.co/lego-outfit/${data.legoAssoc}/icon.png`
+	]
+
+	useEffect(() => {
+		const intervalId = setInterval(() => {
+			setCurrentImageIndex(prevIndex => prevIndex === images.length - 1 ? 0 : prevIndex + 1);
+		}, intervalDuration);
+		return () => clearInterval(intervalId);
+	}, [images.length])
+
+	useEffect(() => {
+		const steps = intervalDuration / 100;
+		let step = 0;
+		const intervalId = setInterval(() => {
+			step++;
+			setProgress((step / steps) * 100);
+			if (step >= steps) {
+				step = 0;
+			}
+		}, 100);
+
+		return () => clearInterval(intervalId);
+	}, []);
+
+	if (data.type === "lego-outfit") return null;
+
 	return (
 		<>
-			<button onClick={toggleModal} className="p-1 rounded-xl hover:saturate-[125%] hover:outline relative">
+			<button onClick={toggleModal} className="group p-1 rounded-xl hover:saturate-[125%] hover:outline relative">
 				{data.type === "bundle" &&
 					<div title="Bundle" className="absolute w-7 h-7 top-2 right-2 p-1.5 bg-neutral-800/50 rounded-full backdrop-blur-sm">
 						<svg fill="white" viewBox="0 0 16 16">
@@ -88,25 +123,37 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 						</svg>
 					</div>
 				}
-				<Image
-					className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} w-full h-full rounded-lg object-cover`}
-					src={data.images.icon ?? placeholder} alt={`${data.name} ${data.readableType}`} width={256} height={256} priority
-				/>
-				<div className="w-[calc(100%-8px)] absolute bottom-1 left-0 translate-x-[4px] bg-neutral-800/50 rounded-b-lg">
-					<h3 className="mt-1 px-2 text-2xl text-center truncate leading-tight font-burbank tracking-wider">
+				<div className="relative">
+					<Image
+						className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} w-full h-full rounded-lg object-cover`}
+						src={data.legoAssoc ? images[currentImageIndex] : data.images.icon ? data.images.icon : placeholder} alt={`${data.name} ${data.readableType}`} width={256} height={256} priority
+					/>
+					{data.legoAssoc && (
+						<div
+							className="absolute bottom-1 left-2 right-2 h-1 rounded-xl bg-white/75 z-10"
+							style={{ width: `calc(${progress}% - 16px)` }}
+						/>
+					)}
+				</div>
+				<div className="w-[calc(100%-8px)] absolute bottom-1 left-0 translate-x-[4px] transition-all bg-neutral-800/50 rounded-b-lg">
+					<h3 className="group-hover:mb-2 mt-1 px-2 text-2xl text-center truncate leading-tight">
 						{data.name}
 					</h3>
-					<p className="mb-1 flex flex-row gap-1 items-center justify-center">
-						<Image className="w-5 h-5" src={vbucks} alt="vBucks" />
-						<span className="text-xl font-burbank tracking-wider">
-							{data.price}
-						</span>
+					<p className="group-hover:hidden mb-2 flex flex-row gap-1 items-center justify-center">
+						{data.priceIcon && (
+							<>
+								<Image className="w-5 h-5" src={vbucks} alt="vBucks" />
+								<span className="text-xl font-burbank tracking-wider">
+									{data.price}
+								</span>
+							</>
+						)}
 					</p>
 				</div>
 			</button>
 			{isOpen &&
 				<div className="fixed inset-0 h-full w-full bg-neutral-800/50 z-10">
-					<div ref={modalRef} className="md:min-w-[700px] sm:min-w-[400px] w-[95%] md:w-fit mx-auto p-6 bg-neutral-800 border-2 border-[#202225] rounded translate-y-10 md:translate-y-40">
+					<div ref={modalRef} className={`md:min-w-[700px] sm:min-w-[400px] w-[95%] md:w-fit mx-auto p-6 ${data.legoAssoc && "pb-8"} bg-neutral-800 border-2 border-[#202225] rounded translate-y-10 md:translate-y-40`}>
 						<button
 							onClick={toggleModal}
 							className="group absolute top-2 right-2 p-2 bg-neutral-700/50 hover:bg-neutral-700/75 rounded-full transition-colors"
@@ -119,6 +166,22 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 									className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} rounded-lg`} width={256} height={256} priority
 									src={data.images ? data.images.featured ? data.images.featured : data.images.icon : placeholder} alt={`${data.name} ${data.readableType}`}
 								/>
+								{data.legoAssoc ? (
+									<>
+										<div className="flex py-1 items-center">
+											<div className="flex-grow border-t-2 border-gray-400"></div>
+											<span className="flex-shrink mx-2 text-gray-400">Available in LEGO</span>
+											<div className="flex-grow border-t-2 border-gray-400"></div>
+										</div>
+										<div className="p-1 hover:outline w-fit rounded-xl mx-auto">
+											<Image
+												className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} rounded-lg`}
+												width={128} height={128}
+												src={`https://image.fnbr.co/lego-outfit/${data.legoAssoc}/icon.png`} alt={`${data.name} LEGO ${data.readableType}`}
+											/>
+										</div>
+									</>
+								) : null}
 								<a
 									className="text-sm text-center text-purple-400 hover:text-purple-500 underline transition-colors"
 									href={`https://fnbr.co/${data.type}/${data.slug}`} target="norel noopen"
@@ -132,18 +195,22 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 										{data.name}
 									</h3>
 									<div className="flex flex-row gap-2 items-center justify-center md:justify-start">
-										<div className="flex flex-row gap-bullet items-center">
-											<Image className="w-5 h-5" src={vbucks} alt="vBucks" />
-											<p>
-												{data.price}
-											</p>
-										</div>
-										<p>
-											<span className={`${rarityText[data.rarity]}`}>{readableRarity[data.rarity]} </span>
-											{data.readableType}
-										</p>
-									</div>
-									{data.description && <p>{"\"" + data.description + "\""}</p>}
+										{data.priceIcon && (
+												<>
+													<div className="flex flex-row gap-bullet items-center">
+														<Image className="w-5 h-5" src={vbucks} alt="vBucks" />
+														<p>
+															{data.price}
+														</p>
+													</div>
+												</>
+											)}
+											< p >
+											< span className={`${rarityText[data.rarity]}`}>{readableRarity[data.rarity]} </span>
+										{data.readableType}
+									</p>
+								</div>
+								{data.description && <p>{"\"" + data.description + "\""}</p>}
 								</div>
 								{data.history ?
 									<div>

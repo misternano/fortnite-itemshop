@@ -1,7 +1,7 @@
-import useFetchData from "./useFetchData";
+import useFetchShop from "./useFetchShop";
 import useClickOutside from "./useClickOutside";
 
 export {
-	useFetchData,
+	useFetchShop,
 	useClickOutside
 };

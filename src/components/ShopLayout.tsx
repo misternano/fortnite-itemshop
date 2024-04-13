@@ -1,11 +1,11 @@
 "use client";
 import { Fragment } from "react";
-import { useFetchData } from "@hooks";
+import { useFetchShop } from "@hooks";
 import type { Item } from "@types";
 import { ItemCard } from "@components";
 
 const ShopLayout = ({ tab }: { tab: string }) => {
-	const { data, error } = useFetchData("shop");
+	const { data, error } = useFetchShop("shop");
 
 	if (!data) {
 		return (

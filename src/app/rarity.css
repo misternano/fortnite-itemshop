@@ -82,6 +82,11 @@
     border: 2px solid #cab2dc;
 }
 
+.bg-mclaren {
+    background: radial-gradient(#7f200d,#4c1105);
+    border: 2px solid #b1331a;
+}
+
 /****************/
 /*     TEXT     */
 /****************/
@@ -148,4 +153,8 @@
 
 .text-lamborghini {
     color: #cab2dc;
+}
+
+.text-mclaren {
+    color: #b1331a;
 }

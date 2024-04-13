@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
-@import url("https://db.onlinewebfonts.com/c/800e985f75a5a56c2f7b4be502d286de?family=Burbank+Big+Condensed");
 @import url("./rarity.css");
 @tailwind base;
 @tailwind components;
@@ -44,10 +43,4 @@ body {
     width: 5px;
     background: white;
     border-radius: 100%;
-}
-
-@font-face {
-    font-family: "Burbank";
-    src: url("https://db.onlinewebfonts.com/t/800e985f75a5a56c2f7b4be502d286de.eot");
-    src: url("https://db.onlinewebfonts.com/t/800e985f75a5a56c2f7b4be502d286de.eot?#iefix") format("embedded-opentype"), url("https://db.onlinewebfonts.com/t/800e985f75a5a56c2f7b4be502d286de.woff2") format("woff2"), url("https://db.onlinewebfonts.com/t/800e985f75a5a56c2f7b4be502d286de.woff") format("woff"), url("https://db.onlinewebfonts.com/t/800e985f75a5a56c2f7b4be502d286de.ttf") format("truetype"), url("https://db.onlinewebfonts.com/t/800e985f75a5a56c2f7b4be502d286de.svg#Burbank Big Condensed") format("svg");
 }

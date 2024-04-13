@@ -7,6 +7,8 @@ export interface Item {
 	};
 	description: string;
 	price: number;
+	priceIcon: boolean;
+	legoAssoc: string;
 	rarity: string;
 	readableType: string;
 	history: {
