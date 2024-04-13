@@ -2,7 +2,7 @@ import "./globals.css";
 import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Navigation, Footer } from "@components";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
 	title: "Fortnite Item Shop",
