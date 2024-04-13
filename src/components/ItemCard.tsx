@@ -88,24 +88,23 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 	const images = [
 		`https://image.fnbr.co/outfit/${data.id}/icon.png`,
 		`https://image.fnbr.co/lego-outfit/${data.legoAssoc}/icon.png`
-	]
+	];
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {
 			setCurrentImageIndex(prevIndex => prevIndex === images.length - 1 ? 0 : prevIndex + 1);
 		}, intervalDuration);
 		return () => clearInterval(intervalId);
-	}, [images.length])
+	}, [images.length]);
 
 	useEffect(() => {
 		const steps = intervalDuration / 100;
 		let step = 0;
 		const intervalId = setInterval(() => {
-			step++;
+			step += 1;
 			setProgress((step / steps) * 100);
-			if (step >= steps) {
+			if (step >= steps)
 				step = 0;
-			}
 		}, 100);
 
 		return () => clearInterval(intervalId);
@@ -196,21 +195,21 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 									</h3>
 									<div className="flex flex-row gap-2 items-center justify-center md:justify-start">
 										{data.priceIcon && (
-												<>
-													<div className="flex flex-row gap-bullet items-center">
-														<Image className="w-5 h-5" src={vbucks} alt="vBucks" />
-														<p>
-															{data.price}
-														</p>
-													</div>
-												</>
-											)}
-											< p >
-											< span className={`${rarityText[data.rarity]}`}>{readableRarity[data.rarity]} </span>
-										{data.readableType}
-									</p>
-								</div>
-								{data.description && <p>{"\"" + data.description + "\""}</p>}
+											<>
+												<div className="flex flex-row gap-bullet items-center">
+													<Image className="w-5 h-5" src={vbucks} alt="vBucks" />
+													<p>
+														{data.price}
+													</p>
+												</div>
+											</>
+										)}
+										<p>
+											<span className={`${rarityText[data.rarity]}`}>{readableRarity[data.rarity]}</span>
+											{data.readableType}
+										</p>
+									</div>
+									{data.description && <p>{"\"" + data.description + "\""}</p>}
 								</div>
 								{data.history ?
 									<div>
