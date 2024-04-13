@@ -114,7 +114,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 
 	return (
 		<>
-			<button onClick={toggleModal} className="group p-1 rounded-xl hover:saturate-[125%] hover:outline relative overflow-x-hidden">
+			<button onClick={toggleModal} className="group p-1 rounded-xl hover:saturate-[125%] hover:outline relative overflow-hidden">
 				{data.type === "bundle" &&
 					<div title="Bundle" className="absolute w-7 h-7 top-2 right-2 p-1.5 bg-neutral-800/50 rounded-full backdrop-blur-sm">
 						<svg fill="white" viewBox="0 0 16 16">
@@ -141,24 +141,23 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 					</>
 				)}
 				<div className="w-[calc(100%-8px)] absolute bottom-1 left-0 translate-x-[4px] transition-all bg-neutral-800/50 group-hover:bg-neutral-800/25 rounded-b-lg">
-					<h3 className={`${data.name.length > 18 && "animate-marquee"} mt-1 px-2 text-2xl text-center whitespace-nowrap leading-tight`}>
+					<h3 className={`${data.name.length > 16 && "animate-marquee"} ${!data.priceIcon && "mb-2"} mt-1 px-2 text-2xl text-center whitespace-nowrap leading-tight`}>
 						{data.name}
 					</h3>
-					<p className="group-hover:opacity-0 group-hover:-translate-y-5 group-hover:-mb-5 transition-all mb-2 flex flex-row gap-1 items-center justify-center">
-						{data.priceIcon && (
-							<>
-								<Image className="w-5 h-5" src={vbucks} alt="vBucks" />
-								<span className="text-xl font-burbank tracking-wider">
-									{data.price}
-								</span>
-							</>
-						)}
-					</p>
+					{data.priceIcon && (
+						<p className="group-hover:opacity-0 group-hover:-translate-y-5 group-hover:-mb-5 transition-all mb-2 flex flex-row gap-1 items-center justify-center">
+							<Image className="w-5 h-5" src={vbucks} alt="vBucks" />
+							<span className="text-xl font-burbank tracking-wider">
+								{data.price}
+							</span>
+						</p>
+					)}
 				</div>
 			</button>
 			{isOpen &&
 				<div className="fixed inset-0 h-full w-full bg-neutral-800/50 z-20">
-					<div ref={modalRef} className={`md:min-w-[700px] sm:min-w-[400px] w-[95%] md:w-fit mx-auto p-6 ${data.legoAssoc && "md:pb-8"} bg-neutral-800 border-2 border-[#202225] rounded translate-y-10 md:translate-y-40`}>
+					<div ref={modalRef}
+					     className={`md:min-w-[700px] sm:min-w-[400px] w-[95%] md:w-fit mx-auto p-6 ${data.legoAssoc && "md:pb-8"} bg-neutral-800 border-2 border-[#202225] rounded translate-y-10 md:translate-y-40`}>
 						<button
 							onClick={toggleModal}
 							className="group absolute top-2 right-2 p-2 bg-neutral-700/50 hover:bg-neutral-700/75 rounded-full transition-colors"
