@@ -151,7 +151,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 				</div>
 			</button>
 			{isOpen &&
-				<div className="fixed inset-0 h-full w-full bg-neutral-800/50 z-10">
+				<div className="fixed inset-0 h-full w-full bg-neutral-800/50 z-20">
 					<div ref={modalRef} className={`md:min-w-[700px] sm:min-w-[400px] w-[95%] md:w-fit mx-auto p-6 ${data.legoAssoc && "md:pb-8"} bg-neutral-800 border-2 border-[#202225] rounded translate-y-10 md:translate-y-40`}>
 						<button
 							onClick={toggleModal}
