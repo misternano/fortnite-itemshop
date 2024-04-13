@@ -152,7 +152,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 			</button>
 			{isOpen &&
 				<div className="fixed inset-0 h-full w-full bg-neutral-800/50 z-10">
-					<div ref={modalRef} className={`md:min-w-[700px] sm:min-w-[400px] w-[95%] md:w-fit mx-auto p-6 ${data.legoAssoc && "pb-8"} bg-neutral-800 border-2 border-[#202225] rounded translate-y-10 md:translate-y-40`}>
+					<div ref={modalRef} className={`md:min-w-[700px] sm:min-w-[400px] w-[95%] md:w-fit mx-auto p-6 ${data.legoAssoc && "md:pb-8"} bg-neutral-800 border-2 border-[#202225] rounded translate-y-10 md:translate-y-40`}>
 						<button
 							onClick={toggleModal}
 							className="group absolute top-2 right-2 p-2 bg-neutral-700/50 hover:bg-neutral-700/75 rounded-full transition-colors"
@@ -166,7 +166,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 									src={data.images ? data.images.featured ? data.images.featured : data.images.icon : placeholder} alt={`${data.name} ${data.readableType}`}
 								/>
 								{data.legoAssoc ? (
-									<>
+									<div className="hidden md:block">
 										<div className="flex py-1 items-center">
 											<div className="flex-grow border-t-2 border-gray-400"></div>
 											<span className="flex-shrink mx-2 text-gray-400">Available in LEGO</span>
@@ -179,7 +179,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 												src={`https://image.fnbr.co/lego-outfit/${data.legoAssoc}/icon.png`} alt={`${data.name} LEGO ${data.readableType}`}
 											/>
 										</div>
-									</>
+									</div>
 								) : null}
 								<a
 									className="text-sm text-center text-purple-400 hover:text-purple-500 underline transition-colors"
@@ -205,7 +205,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 											</>
 										)}
 										<p>
-											<span className={`${rarityText[data.rarity]}`}>{readableRarity[data.rarity]}</span>
+											<span className={`${rarityText[data.rarity]}`}>{readableRarity[data.rarity]} </span>
 											{data.readableType}
 										</p>
 									</div>

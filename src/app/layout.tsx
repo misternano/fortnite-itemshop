@@ -2,11 +2,9 @@ import "./globals.css";
 import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Navigation, Footer } from "@components";
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
-	viewport: "width=device-width, initial-scale=1",
-	themeColor: "#202225",
-	colorScheme: "dark",
 	title: "Fortnite Item Shop",
 	icons: ["assets/fort.png"],
 	description: "Fortnite item shop, resets everyday at 00:00 UTC.",
@@ -23,6 +21,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="en">
 			<body>
+				<Analytics />
 				<Navigation />
 				{children}
 				<Footer />

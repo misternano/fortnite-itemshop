@@ -5,6 +5,12 @@ module.exports = nextConfig;
 
 module.exports = {
 	images: {
-		domains: ["image.fnbr.co"]
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "image.fnbr.co",
+				pathname: "**"
+			}
+		]
 	}
 };
