@@ -108,13 +108,13 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 		}, 100);
 
 		return () => clearInterval(intervalId);
-	}, []);
+	}, [currentImageIndex]);
 
 	if (data.type === "lego-outfit") return null;
 
 	return (
 		<>
-			<button onClick={toggleModal} className="group p-1 rounded-xl hover:saturate-[125%] hover:outline relative">
+			<button onClick={toggleModal} className="group p-1 rounded-xl hover:saturate-[125%] hover:outline relative overflow-x-hidden">
 				{data.type === "bundle" &&
 					<div title="Bundle" className="absolute w-7 h-7 top-2 right-2 p-1.5 bg-neutral-800/50 rounded-full backdrop-blur-sm">
 						<svg fill="white" viewBox="0 0 16 16">
@@ -122,23 +122,29 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 						</svg>
 					</div>
 				}
-				<div className="relative">
-					<Image
-						className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} w-full h-full rounded-lg object-cover`}
-						src={data.legoAssoc ? images[currentImageIndex] : data.images.icon ? data.images.icon : placeholder} alt={`${data.name} ${data.readableType}`} width={256} height={256} priority
-					/>
-					{data.legoAssoc && (
+				<Image
+					className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} w-full h-full rounded-lg object-cover`}
+					src={data.legoAssoc ? images[currentImageIndex] : data.images.icon ? data.images.icon : placeholder} alt={`${data.name} ${data.readableType}`} width={256} height={256} priority
+				/>
+				{data.legoAssoc && (
+					<>
 						<div
-							className="absolute bottom-1 left-2 right-2 h-1 rounded-xl bg-white/75 z-10"
-							style={{ width: `calc(${progress}% - 16px)` }}
+							className="absolute bottom-2 left-3 right-3 h-1 rounded-xl bg-white z-10"
+							style={{ width: `calc(${progress}% - 24px)` }}
 						/>
-					)}
-				</div>
-				<div className="w-[calc(100%-8px)] absolute bottom-1 left-0 translate-x-[4px] transition-all bg-neutral-800/50 rounded-b-lg">
-					<h3 className="group-hover:mb-2 mt-1 px-2 text-2xl text-center truncate leading-tight">
+						<div className="absolute top-2 left-2 w-[calc(100%-16px)]">
+							<div className="w-fit mx-auto p-1.5 rounded-full flex flex-row gap-2 justify-center bg-black/25 backdrop-blur">
+								<div className={`${currentImageIndex === 0 ? "bg-white border-2 border-transparent" : "bg-transparent border-2 border-white"} w-3 h-3 rounded-full transition-all`} />
+								<div className={`${currentImageIndex === 1 ? "bg-white border-2 border-transparent" : "bg-transparent border-2 border-white"} w-3 h-3 rounded-full transition-all`} />
+							</div>
+						</div>
+					</>
+				)}
+				<div className="w-[calc(100%-8px)] absolute bottom-1 left-0 translate-x-[4px] transition-all bg-neutral-800/50 group-hover:bg-neutral-800/25 rounded-b-lg">
+					<h3 className={`${data.name.length > 18 && "animate-marquee"} mt-1 px-2 text-2xl text-center whitespace-nowrap leading-tight`}>
 						{data.name}
 					</h3>
-					<p className="group-hover:hidden mb-2 flex flex-row gap-1 items-center justify-center">
+					<p className="group-hover:opacity-0 group-hover:-translate-y-5 group-hover:-mb-5 transition-all mb-2 flex flex-row gap-1 items-center justify-center">
 						{data.priceIcon && (
 							<>
 								<Image className="w-5 h-5" src={vbucks} alt="vBucks" />
