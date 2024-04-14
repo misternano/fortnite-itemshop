@@ -36,7 +36,7 @@ const ShopLayout = () => {
 						<h2 className="mb-2 p-1 text-center bg-neutral-900 rounded drop-shadow text-xl">
 							{s.displayName}
 						</h2>
-						<div className="flex flex-row flex-wrap justify-evenly gap-1">
+						<div className="grid grid-cols-2 sm:flex flex-row flex-wrap justify-evenly gap-1">
 							{filterItemsBySection(s.key)?.map((f: Item) => (
 								<ItemCard
 									key={f.id}
