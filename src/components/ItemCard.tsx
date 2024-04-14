@@ -98,14 +98,14 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 	}, [images.length]);
 
 	useEffect(() => {
-		const steps = intervalDuration / 33;
+		const steps = intervalDuration / 100;
 		let step = 0;
 		const intervalId = setInterval(() => {
 			step += 1;
 			setProgress((step / steps) * 100);
 			if (step >= steps)
 				step = 0;
-		}, 0);
+		}, 100);
 
 		return () => clearInterval(intervalId);
 	}, [currentImageIndex]);
