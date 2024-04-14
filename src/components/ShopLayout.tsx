@@ -22,10 +22,10 @@ const ShopLayout = () => {
 	}
 
 	const filterItemsBySection = (sectionKey: string) => {
-		const section = data.sections?.find((s: Sections) => s.key === sectionKey)
+		const section = data.sections?.find((s: Sections) => s.key === sectionKey);
 		if (!section) return [];
 		return data.featured?.filter((item: Item) => section.items.includes(item.id));
-	}
+	};
 
 	return (
 		<>
@@ -47,7 +47,7 @@ const ShopLayout = () => {
 					</section>
 				))}
 		</>
-	)
+	);
 };
 
 export default ShopLayout;
