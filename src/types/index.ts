@@ -1,5 +1,5 @@
 export interface Item {
-	id: number;
+	id: string;
 	name: string;
 	images: {
 		icon: string;
@@ -21,9 +21,17 @@ export interface Item {
 	slug: string;
 }
 
+export interface Sections {
+	displayName: string;
+	key: string;
+	items: string[];
+	sortOrder: number;
+}
+
 export interface ShopData {
 	status: number;
 	data?: Item[];
 	daily?: Item[];
 	featured?: Item[];
+	sections?: Sections[];
 }

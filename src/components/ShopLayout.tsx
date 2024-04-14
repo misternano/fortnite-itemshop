@@ -1,16 +1,15 @@
 "use client";
-import { Fragment } from "react";
 import { useFetchShop } from "@hooks";
-import type { Item } from "@types";
+import type { Item, Sections } from "@types";
 import { ItemCard } from "@components";
 
-const ShopLayout = ({ tab }: { tab: string }) => {
+const ShopLayout = () => {
 	const { data, error } = useFetchShop("shop");
 
 	if (!data) {
 		return (
 			<span className="mt-6 text-center text-lg animate-pulse">
-				loading {tab}
+				loading
 			</span>
 		);
 	}
@@ -22,55 +21,33 @@ const ShopLayout = ({ tab }: { tab: string }) => {
 		);
 	}
 
-	switch (tab) {
-		case "daily":
-			return (
-				<>
-					<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-1">
-						{data?.daily?.map((d: Item) => (
-							<ItemCard
-								key={d.id}
-								data={d}
-							/>
-						))}
-					</div>
-				</>
-			);
-		case "featured":
-			return (
-				<>
-					<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-1">
-						{data?.featured?.map((f: Item) => {
-							return f.type !== "bundle" ?
+	const filterItemsBySection = (sectionKey: string) => {
+		const section = data.sections?.find((s: Sections) => s.key === sectionKey)
+		if (!section) return [];
+		return data.featured?.filter((item: Item) => section.items.includes(item.id));
+	}
+
+	return (
+		<>
+			{data.sections
+				?.sort((a,b) => a.sortOrder + b.sortOrder)
+				?.map((s: Sections) => (
+					<section key={s.key} id={s.key}>
+						<h2 className="mb-2 p-1 text-center bg-neutral-900 rounded drop-shadow text-xl">
+							{s.displayName}
+						</h2>
+						<div className="flex flex-row flex-wrap justify-evenly gap-1">
+							{filterItemsBySection(s.key)?.map((f: Item) => (
 								<ItemCard
 									key={f.id}
 									data={f}
 								/>
-								:
-								<Fragment key={f.id} />
-							;
-						})}
-					</div>
-				</>
-			);
-		case "bundles":
-			return (
-				<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-1">
-					{data?.featured?.map((b: Item) => {
-						return b.type === "bundle" ?
-							<ItemCard
-								key={b.id}
-								data={b}
-							/>
-							:
-							<Fragment key={b.id} />
-						;
-					})}
-				</div>
-			);
-		default:
-			return <span>An error occurred, see console.</span>;
-	}
+							))}
+						</div>
+					</section>
+				))}
+		</>
+	)
 };
 
 export default ShopLayout;

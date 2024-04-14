@@ -98,14 +98,14 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 	}, [images.length]);
 
 	useEffect(() => {
-		const steps = intervalDuration / 100;
+		const steps = intervalDuration / 33;
 		let step = 0;
 		const intervalId = setInterval(() => {
 			step += 1;
 			setProgress((step / steps) * 100);
 			if (step >= steps)
 				step = 0;
-		}, 100);
+		}, 0);
 
 		return () => clearInterval(intervalId);
 	}, [currentImageIndex]);
@@ -123,8 +123,8 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 					</div>
 				}
 				<Image
-					className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} w-full h-full rounded-lg object-cover`}
-					src={data.legoAssoc ? images[currentImageIndex] : data.images.icon ? data.images.icon : placeholder} alt={`${data.name} ${data.readableType}`} width={256} height={256} priority
+					className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} rounded-lg object-cover`}
+					src={data.legoAssoc ? images[currentImageIndex] : data.images.icon ? data.images.icon : placeholder} alt={`${data.name} ${data.readableType}`} width={200} height={200} priority
 				/>
 				{data.legoAssoc && (
 					<>
@@ -133,9 +133,9 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 							style={{ width: `calc(${progress}% - 24px)` }}
 						/>
 						<div className="absolute top-2 left-2 w-[calc(100%-16px)]">
-							<div className="w-fit mx-auto p-1.5 rounded-full flex flex-row gap-2 justify-center bg-black/25 backdrop-blur">
-								<div className={`${currentImageIndex === 0 ? "bg-white border-2 border-transparent" : "bg-transparent border-2 border-white"} w-3 h-3 rounded-full transition-all`} />
-								<div className={`${currentImageIndex === 1 ? "bg-white border-2 border-transparent" : "bg-transparent border-2 border-white"} w-3 h-3 rounded-full transition-all`} />
+							<div className="w-fit mx-auto p-1.5 px-2 rounded-full flex flex-row gap-2 justify-center bg-neutral-800/25 backdrop-blur">
+								<div className={`${currentImageIndex === 0 ? "bg-white border-2 border-transparent" : "bg-transparent border-2 border-white"} w-2.5 h-2.5 rounded-full transition-all`} />
+								<div className={`${currentImageIndex === 1 ? "bg-white border-2 border-transparent" : "bg-transparent border-2 border-white"} w-2.5 h-2.5 rounded-full transition-all`} />
 							</div>
 						</div>
 					</>
@@ -147,7 +147,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 					{data.priceIcon && (
 						<p className="group-hover:opacity-0 group-hover:-translate-y-5 group-hover:-mb-5 transition-all mb-2 flex flex-row gap-1 items-center justify-center">
 							<Image className="w-5 h-5" src={vbucks} alt="vBucks" />
-							<span className="text-xl font-burbank tracking-wider">
+							<span className="text-xl tracking-wider">
 								{data.price}
 							</span>
 						</p>

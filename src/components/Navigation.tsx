@@ -24,7 +24,7 @@ const Navigation = () => {
 		setCountdown(getTime().join(":"));
 		const interval = setInterval((() => {
 			setCountdown(getTime().join(":"));
-			if (countdown === "00:01")
+			if (countdown === "00:00")
 				window.location.reload();
 			return countdown;
 		}), 1000);
@@ -33,7 +33,7 @@ const Navigation = () => {
 	}, [countdown]);
 
 	return (
-		<nav className="grid md:grid-cols-3 grid-cols-2 items-center m-2 p-3 text-center bg-neutral-900 rounded drop-shadow-lg">
+		<nav className="m-2 p-3 grid md:grid-cols-3 grid-cols-2 items-center text-center bg-neutral-900 rounded drop-shadow-lg">
 			<p className="order-1 flex flex-row gap-1 items-center justify-self-start bg-neutral-800 py-1 px-2 rounded">
 				<RotateCw size={15} className="stroke-purple-400" />
 				<span className="text-sm">
