@@ -6,7 +6,7 @@ import type { Item } from "@types";
 import { useClickOutside } from "@hooks";
 import { X } from "lucide-react";
 import { DateTime } from "luxon";
-import vbucks from "../assets/images/vbucks.png";
+import vbucks from "../assets/images/vbuck.svg";
 import placeholder from "../assets/images/placeholder.jpg";
 
 const ItemCard: FC<{ data: Item }> = ({ data }) => {
@@ -103,8 +103,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 		const intervalId = setInterval(() => {
 			step += 1;
 			setProgress((step / steps) * 100);
-			if (step >= steps)
-				step = 0;
+			if (step >= steps) step = 0;
 		}, 100);
 
 		return () => clearInterval(intervalId);
@@ -176,7 +175,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 											<span className="flex-shrink mx-2 text-gray-400">Available in LEGO</span>
 											<div className="flex-grow border-t-2 border-gray-400"></div>
 										</div>
-										<div className="p-1 hover:outline w-fit rounded-xl mx-auto">
+										<div className="w-fit rounded-xl mx-auto">
 											<Image
 												className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} rounded-lg`}
 												width={128} height={128}
