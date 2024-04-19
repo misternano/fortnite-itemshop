@@ -157,8 +157,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 			</button>
 			{isOpen &&
 				<div className="fixed inset-0 h-full w-full bg-neutral-800/50 z-20">
-					<div ref={modalRef}
-					     className="w-[95%] sm:min-w-[400px] md:min-w-[700px] md:w-fit mx-auto p-6 pb-3 bg-neutral-800 border-2 border-[#202225] rounded-xl translate-y-10 md:translate-y-40">
+					<div ref={modalRef} className="w-[95%] sm:min-w-[400px] md:min-w-[700px] md:w-fit mx-auto p-6 pb-3 bg-neutral-800 border-2 border-[#202225] rounded-xl translate-y-10 md:translate-y-40">
 						<button
 							onClick={toggleModal}
 							className="group absolute top-2 right-2 p-2 bg-neutral-700/50 hover:bg-neutral-700/75 rounded-full transition-colors"

@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Navigation, Footer } from "@components";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
 	title: "Fortnite Item Shop",
@@ -21,10 +22,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="en">
 			<body>
-				<Analytics />
 				<Navigation />
 				{children}
 				<Footer />
+				<Analytics />
+				<SpeedInsights />
 			</body>
 		</html>
 	);

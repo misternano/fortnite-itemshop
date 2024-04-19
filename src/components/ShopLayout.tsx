@@ -30,7 +30,7 @@ const ShopLayout = () => {
 	return (
 		<>
 			{data.sections
-				?.sort((a,b) => a.sortOrder + b.sortOrder)
+				?.sort((a, b) => a.sortOrder + b.sortOrder)
 				?.map((s: Sections) => (
 					<section key={s.key} id={s.key}>
 						<h2 className="mb-2 p-1 text-center bg-neutral-900 rounded drop-shadow text-xl">
