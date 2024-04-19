@@ -1,10 +1,10 @@
 "use client";
 import { ItemCard } from "@components";
-import { useFetchShop } from "@hooks";
+import { useFetchData } from "@hooks";
 import type { Item } from "@types";
 
 const UpcomingLayout = () => {
-	const { data, error } = useFetchShop("upcoming");
+	const { data, error } = useFetchData("upcoming");
 
 	if (!data) {
 		return (

@@ -1,9 +1,9 @@
 "use client";
 import { ShopLayout } from "@components";
-import { useFetchShop } from "@hooks";
+import { useFetchData } from "@hooks";
 
 const Home = () => {
-	const { data } = useFetchShop("shop");
+	const { data } = useFetchData("shop");
 
 	return (
 		<>

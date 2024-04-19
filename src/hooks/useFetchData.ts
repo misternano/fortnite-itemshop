@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import type { ShopData } from "@types";
 
-const useFetchShop = (path: string) => {
+const useFetchData = (path: string) => {
 	const [data, setData] = useState<ShopData | null>(null);
 	const [error, setError] = useState<string | null>(null);
 
@@ -21,4 +21,4 @@ const useFetchShop = (path: string) => {
 	return { data, error };
 };
 
-export default useFetchShop;
+export default useFetchData;
