@@ -122,7 +122,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 					</div>
 				}
 				<div className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} rounded-lg object-cover overflow-hidden`}>
-					<Image
+					<Image unoptimized
 						className="group-hover:scale-110 transition-transform"
 						src={data.legoAssoc ? images[currentImageIndex] : data.images.icon ? data.images.icon : placeholder} alt={`${data.name} ${data.readableType}`} width={200} height={200} priority
 					/>
@@ -147,7 +147,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 					</h3>
 					{data.priceIcon && (
 						<p className="group-hover:opacity-0 group-hover:-translate-y-5 group-hover:-mb-5 transition-all mb-2 flex flex-row gap-1 items-center justify-center">
-							<Image className="w-5 h-5" src={vbucks} alt="vBucks" />
+							<img className="w-5 h-5" src={vbucks} alt="vBucks" />
 							<span className="text-xl tracking-wider">
 								{data.price}
 							</span>
@@ -167,7 +167,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 						<div className="flex flex-col md:flex-row items-center md:items-start gap-6">
 							<aside>
 								<div className="flex flex-col w-64 h-64 aspect-square">
-									<Image
+									<Image unoptimized
 										className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} rounded-lg`}
 										width={256} height={256} priority
 										src={data.images ? data.images.featured ? data.images.featured : data.images.icon : placeholder}
@@ -182,7 +182,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 											<div className="flex-grow border-t-2 border-gray-400"></div>
 										</div>
 										<div className="w-fit rounded-xl mx-auto">
-											<Image
+											<Image unoptimized
 												className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} rounded-lg`}
 												width={128} height={128}
 												src={`https://image.fnbr.co/lego-outfit/${data.legoAssoc}/icon.png`}
@@ -201,7 +201,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 										{data.priceIcon && (
 											<>
 												<div className="flex flex-row gap-bullet items-center">
-													<Image className="w-5 h-5" src={vbucks} alt="vBucks" />
+													<img className="w-5 h-5" src={vbucks} alt="vBucks" />
 													<p>
 														{data.price}
 													</p>
