@@ -1,13 +1,10 @@
 /* eslint-disable camelcase */
 "use client";
-import Image from "next/image";
-import { FC, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import type { Item } from "@types";
 import { useClickOutside } from "@hooks";
 import { X } from "lucide-react";
 import { DateTime } from "luxon";
-import vbucks from "../assets/images/vbuck.svg";
-import placeholder from "../assets/images/placeholder.jpg";
 
 export const rarityBackground: { [key: string]: string } = {
 	common: "bg-common",
@@ -69,7 +66,7 @@ export const readableRarity: { [key: string]: string } = {
 	mclaren: "McLaren"
 };
 
-const ItemCard: FC<{ data: Item }> = ({ data }) => {
+const ItemCard = ({ data }: { data: Item }) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
 	const [progress, setProgress] = useState<number>(0);
@@ -85,17 +82,17 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 		setIsOpen(false);
 	});
 
-	const images = [
+	const outfitImages = [
 		`https://image.fnbr.co/outfit/${data.id}/icon.png`,
 		`https://image.fnbr.co/lego-outfit/${data.legoAssoc}/icon.png`
 	];
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {
-			setCurrentImageIndex(prevIndex => prevIndex === images.length - 1 ? 0 : prevIndex + 1);
+			setCurrentImageIndex(prevIndex => prevIndex === outfitImages.length - 1 ? 0 : prevIndex + 1);
 		}, intervalDuration);
 		return () => clearInterval(intervalId);
-	}, [images.length]);
+	}, [outfitImages.length]);
 
 	useEffect(() => {
 		const steps = intervalDuration / 100;
@@ -122,9 +119,9 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 					</div>
 				}
 				<div className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} rounded-lg object-cover overflow-hidden`}>
-					<Image unoptimized
-						className="group-hover:scale-110 transition-transform"
-						src={data.legoAssoc ? images[currentImageIndex] : data.images.icon ? data.images.icon : placeholder} alt={`${data.name} ${data.readableType}`} width={200} height={200} priority
+					<img
+						className="w-[200px] h-[200px] group-hover:scale-110 transition-transform"
+						src={data.legoAssoc ? outfitImages[currentImageIndex] : data.images.icon} alt={`${data.name} ${data.readableType}`}
 					/>
 				</div>
 				{data.legoAssoc && (
@@ -147,7 +144,35 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 					</h3>
 					{data.priceIcon && (
 						<p className="group-hover:opacity-0 group-hover:-translate-y-5 group-hover:-mb-5 transition-all mb-2 flex flex-row gap-1 items-center justify-center">
-							<img className="w-5 h-5" src={vbucks} alt="vBucks" />
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className="w-5 h-5">
+								<path fill="#FFFFFF" opacity="1.000000" stroke="none" d="
+                                    M86.196671,117.332939
+									C72.580940,122.128311 59.257168,122.531181 45.782448,118.043045
+									C25.350933,111.237770 8.745368,88.909515 8.808174,67.467834
+									C8.846189,54.490307 11.339722,42.579540 19.062965,32.265099
+									C29.699253,18.060274 43.618565,9.634228 61.951965,8.879116
+									C75.147232,8.335633 87.135788,11.240834 97.665581,19.032873
+									C111.987617,29.631176 120.235649,43.633072 121.099289,61.876938
+									C121.723389,75.060669 118.740158,86.993874 110.996635,97.607658
+									C104.651253,106.305061 96.833160,113.318710 86.196671,117.332939
+                                    M83.522491,43.000000
+									C82.189728,43.000000 80.838440,43.142723 79.527748,42.972641
+									C75.919724,42.504452 74.572548,43.850140 73.834549,47.605427
+									C72.352463,55.147045 70.076180,62.541969 67.885567,69.925606
+									C67.526115,71.137161 65.931671,71.982300 64.907997,72.996780
+									C63.943565,71.920998 62.446793,70.992645 62.101391,69.745430
+									C59.915958,61.854012 58.057724,53.872154 55.890438,45.975330
+									C55.577217,44.834061 54.224560,43.187332 53.283756,43.139668
+									C47.901775,42.867020 42.498882,43.007195 36.653522,43.007195
+									C41.004066,57.371071 45.017414,71.048904 49.431118,84.596298
+									C49.924294,86.110062 52.643677,87.751747 54.410667,87.846809
+									C61.361870,88.220741 68.356522,87.763863 75.311455,88.101364
+									C78.698814,88.265739 80.108521,86.709862 80.964218,83.996788
+									C82.554848,78.953537 84.091850,73.892998 85.609077,68.827049
+									C88.133438,60.398369 90.624588,51.959736 93.285736,43.000000
+									C90.063293,43.000000 87.275429,43.000000 83.522491,43.000000
+									z" />
+							</svg>
 							<span className="text-xl tracking-wider">
 								{data.price}
 							</span>
@@ -157,7 +182,8 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 			</button>
 			{isOpen &&
 				<div className="fixed inset-0 h-full w-full bg-neutral-800/50 z-20">
-					<div ref={modalRef} className="w-[95%] sm:min-w-[400px] md:min-w-[700px] md:w-fit mx-auto p-6 pb-3 bg-neutral-800 border-2 border-[#202225] rounded-xl translate-y-10 md:translate-y-40">
+					<div ref={modalRef}
+					     className="w-[95%] sm:min-w-[400px] md:min-w-[700px] md:w-fit mx-auto p-6 pb-3 bg-neutral-800 border-2 border-[#202225] rounded-xl translate-y-10 md:translate-y-40">
 						<button
 							onClick={toggleModal}
 							className="group absolute top-2 right-2 p-2 bg-neutral-700/50 hover:bg-neutral-700/75 rounded-full transition-colors"
@@ -167,11 +193,10 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 						<div className="flex flex-col md:flex-row items-center md:items-start gap-6">
 							<aside>
 								<div className="flex flex-col w-64 h-64 aspect-square">
-									<Image unoptimized
-										className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} rounded-lg`}
-										width={256} height={256} priority
-										src={data.images ? data.images.featured ? data.images.featured : data.images.icon : placeholder}
-										alt={`${data.name} ${data.readableType}`}
+									<img
+									       className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} w-[256px] h-[256px] rounded-lg`}
+									       src={data.images.featured ? data.images.featured : data.images.icon}
+									       alt={`${data.name} ${data.readableType}`}
 									/>
 								</div>
 								{data.legoAssoc && (
@@ -182,9 +207,8 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 											<div className="flex-grow border-t-2 border-gray-400"></div>
 										</div>
 										<div className="w-fit rounded-xl mx-auto">
-											<Image unoptimized
-												className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} rounded-lg`}
-												width={128} height={128}
+											<img
+												className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} w-[128px] h-[128px] rounded-lg`}
 												src={`https://image.fnbr.co/lego-outfit/${data.legoAssoc}/icon.png`}
 												alt={`${data.name} LEGO ${data.readableType}`}
 											/>
@@ -201,7 +225,36 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 										{data.priceIcon && (
 											<>
 												<div className="flex flex-row gap-bullet items-center">
-													<img className="w-5 h-5" src={vbucks} alt="vBucks" />
+													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"
+													     className="w-5 h-5">
+														<path fill="#FFFFFF" opacity="1.000000" stroke="none" d="
+                                                            M86.196671,117.332939
+															C72.580940,122.128311 59.257168,122.531181 45.782448,118.043045
+															C25.350933,111.237770 8.745368,88.909515 8.808174,67.467834
+															C8.846189,54.490307 11.339722,42.579540 19.062965,32.265099
+															C29.699253,18.060274 43.618565,9.634228 61.951965,8.879116
+															C75.147232,8.335633 87.135788,11.240834 97.665581,19.032873
+															C111.987617,29.631176 120.235649,43.633072 121.099289,61.876938
+															C121.723389,75.060669 118.740158,86.993874 110.996635,97.607658
+															C104.651253,106.305061 96.833160,113.318710 86.196671,117.332939
+                                                            M83.522491,43.000000
+															C82.189728,43.000000 80.838440,43.142723 79.527748,42.972641
+															C75.919724,42.504452 74.572548,43.850140 73.834549,47.605427
+															C72.352463,55.147045 70.076180,62.541969 67.885567,69.925606
+															C67.526115,71.137161 65.931671,71.982300 64.907997,72.996780
+															C63.943565,71.920998 62.446793,70.992645 62.101391,69.745430
+															C59.915958,61.854012 58.057724,53.872154 55.890438,45.975330
+															C55.577217,44.834061 54.224560,43.187332 53.283756,43.139668
+															C47.901775,42.867020 42.498882,43.007195 36.653522,43.007195
+															C41.004066,57.371071 45.017414,71.048904 49.431118,84.596298
+															C49.924294,86.110062 52.643677,87.751747 54.410667,87.846809
+															C61.361870,88.220741 68.356522,87.763863 75.311455,88.101364
+															C78.698814,88.265739 80.108521,86.709862 80.964218,83.996788
+															C82.554848,78.953537 84.091850,73.892998 85.609077,68.827049
+															C88.133438,60.398369 90.624588,51.959736 93.285736,43.000000
+															C90.063293,43.000000 87.275429,43.000000 83.522491,43.000000
+															z" />
+													</svg>
 													<p>
 														{data.price}
 													</p>
@@ -244,7 +297,7 @@ const ItemCard: FC<{ data: Item }> = ({ data }) => {
 															target="norel noopen"
 															className="flex flex-col text-purple-400 hover:text-purple-500 underline transition-colors"
 														>
-															{DateTime.fromISO(h, { zone: "utc" }).toFormat("MMMM d, yyyy")}
+														{DateTime.fromISO(h, { zone: "utc" }).toFormat("MMMM d, yyyy")}
 														</a>
 														<p>
 															{diff <= 0 ? "Today" : diff}

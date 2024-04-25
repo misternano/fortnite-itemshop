@@ -27,6 +27,7 @@ const ShopLayout = () => {
 		return data.featured?.filter((item: Item) => section.items.includes(item.id));
 	};
 
+	// TODO: Add a skeleton loader for item cards
 	return (
 		<>
 			{data.sections
