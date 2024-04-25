@@ -182,8 +182,7 @@ const ItemCard = ({ data }: { data: Item }) => {
 			</button>
 			{isOpen &&
 				<div className="fixed inset-0 h-full w-full bg-neutral-800/50 z-20">
-					<div ref={modalRef}
-					     className="w-[95%] sm:min-w-[400px] md:min-w-[700px] md:w-fit mx-auto p-6 pb-3 bg-neutral-800 border-2 border-[#202225] rounded-xl translate-y-10 md:translate-y-40">
+					<div ref={modalRef} className="w-[95%] sm:min-w-[400px] md:min-w-[700px] md:w-fit mx-auto p-6 pb-3 bg-neutral-800 border-2 border-[#202225] rounded-xl translate-y-10 md:translate-y-40">
 						<button
 							onClick={toggleModal}
 							className="group absolute top-2 right-2 p-2 bg-neutral-700/50 hover:bg-neutral-700/75 rounded-full transition-colors"
@@ -194,9 +193,9 @@ const ItemCard = ({ data }: { data: Item }) => {
 							<aside>
 								<div className="flex flex-col w-64 h-64 aspect-square">
 									<img
-									       className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} w-[256px] h-[256px] rounded-lg`}
-									       src={data.images.featured ? data.images.featured : data.images.icon}
-									       alt={`${data.name} ${data.readableType}`}
+										className={`${rarityBackground ? rarityBackground[data.rarity] : "rarity-common"} w-[256px] h-[256px] rounded-lg`}
+										src={data.images.featured ? data.images.featured : data.images.icon}
+										alt={`${data.name} ${data.readableType}`}
 									/>
 								</div>
 								{data.legoAssoc && (
@@ -225,8 +224,7 @@ const ItemCard = ({ data }: { data: Item }) => {
 										{data.priceIcon && (
 											<>
 												<div className="flex flex-row gap-bullet items-center">
-													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"
-													     className="w-5 h-5">
+													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className="w-5 h-5">
 														<path fill="#FFFFFF" opacity="1.000000" stroke="none" d="
                                                             M86.196671,117.332939
 															C72.580940,122.128311 59.257168,122.531181 45.782448,118.043045
@@ -297,7 +295,7 @@ const ItemCard = ({ data }: { data: Item }) => {
 															target="norel noopen"
 															className="flex flex-col text-purple-400 hover:text-purple-500 underline transition-colors"
 														>
-														{DateTime.fromISO(h, { zone: "utc" }).toFormat("MMMM d, yyyy")}
+															{DateTime.fromISO(h, { zone: "utc" }).toFormat("MMMM d, yyyy")}
 														</a>
 														<p>
 															{diff <= 0 ? "Today" : diff}
